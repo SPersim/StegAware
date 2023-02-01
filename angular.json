@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "AngularQuizApp": {
+    "StegAware": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/AngularQuizApp",
+            "outputPath": "dist/StegAware",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "AngularQuizApp:build:production"
+              "browserTarget": "StegAware:build:production"
             },
             "development": {
-              "browserTarget": "AngularQuizApp:build:development"
+              "browserTarget": "StegAware:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "AngularQuizApp:build"
+            "browserTarget": "StegAware:build"
           }
         },
         "test": {
@@ -103,9 +103,19 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "StegAware:build:production",
+            "firebaseProject": "stegaware-598a2",
+            "firebaseHostingSite": "stegaware-598a2"
+          }
         }
       }
     }
   },
-  "defaultProject": "AngularQuizApp"
+  "defaultProject": "StegAware"
 }
