@@ -1,0 +1,17 @@
+<div class="container bg-light py-5">
+    <h1 class="display-5 fw-bold">Welcome to StegAware</h1>
+    <p class="col-md-8 fs-4">This quiz contains a total of 10 randomized questions.</p>
+    <h4>Rules:</h4>
+    <ol>
+        <li>Correct answers will gain you points</li>
+        <li>Incorrect answers will lose you points</li>
+        <li>You will have 45 sec to answer each question</li>
+    </ol>
+    <h1 style="font-family: cursive;text-align:center; color: white">.</h1>
+    <div class="name col-md-4 my-3">
+        <label for="">Enter your employee id:</label>
+        <input #name type="text" class="form-control">
+    </div>
+    <button class="btn btn-primary btn-lg" routerLink="/question" (click)="startQuiz()">Start the Test</button>
+
+</div>

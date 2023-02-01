@@ -1,0 +1,544 @@
+<div class="container mt-5">
+  <div class="card">
+
+    <ng-container *ngIf="!isQuizCompleted">
+
+      <!--INFORMATION-->
+      <div class="d-flex justify-content-around py-3">
+        <div class="score">
+          <h5>{{points}} Points</h5>
+        </div>
+        <div class="question-remain">
+          <span style="font-style: italic;">Question {{questionNumber+1}} of {{questionAmount}}</span>
+        </div>
+        <div class="timer">
+          <h5>{{minutes}} min {{seconds}} sec ⏱</h5>
+        </div>
+      </div>
+
+      <!--PROGRESS BAR-->
+      <div class="progress mb-3">
+        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [ngStyle]="{'width':progress+'%'}"
+             aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+
+      <!--TIME ALERT-->
+      <ng-container *ngIf="minutes+questionNumber < 9">
+        <div class="alert bg-warning alert-warning text-center" role="alert">
+          <strong>Keep going!</strong> Otherwise, you won't have enough time.
+        </div>
+      </ng-container>
+
+      <!--QUESTION-->
+      <div class="question">
+        <div class="card mb-2">
+          <div class="row d-flex justify-content-between"
+               style="display: flex; justify-content: center; align-items: center;">
+            <ng-container *ngIf="questionID != 2 && questionID != 5 && questionID != 9 && questionID != 10 && questionID != 11 && questionID != 15 && questionID != 19">
+              <h3>{{questionText}}</h3>
+            </ng-container>
+            <ng-container *ngIf="questionID == 2 || questionID == 5 || questionID == 9 || questionID == 10 || questionID == 11 || questionID == 15 || questionID == 19">
+              <div class="result col-md-7 col-sm-12">
+                <h3>{{questionText}}</h3>
+              </div>
+              <ng-container *ngIf="questionID == 2">
+                <img style="width: 30%; height: 100%" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                     src="./assets/images/2_0.png" alt="">
+              </ng-container>
+              <ng-container *ngIf="questionID == 5">
+                <img style="width: 40%; height: 100%" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                     src="./assets/images/5_0.bmp" alt="">
+              </ng-container>
+              <ng-container *ngIf="questionID == 9">
+                <img style="width: 40%; height: 100%" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                     src="./assets/images/9_0.png" alt="">
+              </ng-container>
+              <ng-container *ngIf="questionID == 10">
+                <img style="width: 30%; height: 100%" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                     src="./assets/images/10_0.jpg" alt="">
+              </ng-container>
+              <ng-container *ngIf="questionID == 11">
+                <img style="width: 41%; height: 100%" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                     src="./assets/images/11_0.jpg" alt="">
+              </ng-container>
+              <ng-container *ngIf="questionID == 15">
+                <img style="width: 40%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                     src="./assets/images/15_0.png" alt="">
+              </ng-container>
+              <ng-container *ngIf="questionID == 19">
+                <img style="width: 41%; height: 100%" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                     src="./assets/images/19_0.png" alt="">
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+      <!--IMAGES-->
+      <ng-container *ngIf="questionID == 1">
+        <img style="width: 97%; height: 100%" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+             src="./assets/images/1_0.png" alt="">
+      </ng-container>
+      <ng-container *ngIf="questionID == 3">
+        <div class="row">
+          <div class="column my-auto">
+            <img style="width: 100%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                 src="./assets/images/3_0.png" alt="">
+          </div>
+          <div class="column my-auto">
+            <img style="width: 100%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                 src="./assets/images/3_2.png" alt="">
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="questionID == 4">
+        <img style="width: 97%; height: 100%" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+             src="./assets/images/4_0.png" alt="">
+      </ng-container>
+      <ng-container *ngIf="questionID == 5">
+        <iframe class="mx-auto mt-4 mb-4" width="85%" height="1350" src="https://incoherency.co.uk/image-steganography/#unhide" title="Image-Steganography" frameborder="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </ng-container>
+      <ng-container *ngIf="questionID == 6">
+        <img style="width: 60%; height: 100%" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+             src="./assets/images/6_0.png" alt="">
+      </ng-container>
+      <ng-container *ngIf="questionID == 7">
+        <div class="row">
+          <div class="column my-auto">
+            <div class="cont">
+              <img style="width: 100%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                   src="./assets/images/7_1.png" alt="">
+              <div class="middle">
+                <div class="txt0">Item type: PNG File</div>
+                <div class="txt1">Dimensions: 942 x 619</div>
+                <div class="txt2">Size: 1,14 MB</div>
+              </div>
+            </div>
+          </div>
+          <div class="column my-auto">
+            <div class="cont">
+              <img style="width: 100%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                   src="./assets/images/7_0.png" alt="">
+              <div class="middle">
+                <div class="txt0">Item type: JPEG File</div>
+                <div class="txt1">Dimensions: 807 x 532</div>
+                <div class="txt2">Size: 577 KB</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="questionID == 8">
+        <img style="width: 85%; height: 100%" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+             src="./assets/images/8_0.png" alt="">
+      </ng-container>
+      <ng-container *ngIf="questionID == 12">
+        <div class="row">
+          <div class="column my-auto">
+            <div class="cont">
+              <img style="width: 80%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                   src="./assets/images/12_0.png" alt="">
+              <div class="middle1" (click)="answer(this.options[0]); clicked=true; textAnswer=this.options[0].text">
+                <div class="txt0">Item type: {{this.options[0].text}} File</div>
+                <div class="txt1">Dimensions: 742 x 619</div>
+                <div class="txt2">Size: 1,14 MB</div>
+              </div>
+            </div>
+          </div>
+          <div class="column my-auto">
+            <div class="cont">
+              <img style="width: 80%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                   src="./assets/images/12_1.png" alt="">
+              <div class="middle1" (click)="answer(this.options[1]); clicked=true; textAnswer=this.options[1].text">
+                <div class="txt0">Item type: {{this.options[1].text}} File</div>
+                <div class="txt1">Dimensions: 807 x 732</div>
+                <div class="txt2">Size: 845 KB</div>
+              </div>
+            </div>
+          </div>
+          <div class="column my-auto">
+            <div class="cont">
+              <img style="width: 80%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                   src="./assets/images/12_2.png" alt="">
+              <div class="middle1" (click)="answer(this.options[2]); clicked=true; textAnswer=this.options[2].text">
+                <div class="txt0">Item type: {{this.options[2].text}} File</div>
+                <div class="txt1">Dimensions: 483 x 575</div>
+                <div class="txt2">Size: 677 KB</div>
+              </div>
+            </div>
+          </div>
+          <div class="column my-auto">
+            <div class="cont">
+              <img style="width: 80%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                   src="./assets/images/12_3.png" alt="">
+              <div class="middle1" (click)="answer(this.options[3]); clicked=true; textAnswer=this.options[3].text">
+                <div class="txt0">Item type: {{this.options[3].text}} File</div>
+                <div class="txt1">Dimensions: 629 x 564</div>
+                <div class="txt2">Size: 1,83 MB</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-container *ngIf="questionAnswered">
+          <div class="answer mt-1 mb-2">
+            <ng-container *ngIf="correct">
+              <div class="card correct text-white text-center ">
+                <h6>{{textAnswer}}</h6>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="!correct">
+              <div class="card incorrect text-white text-center ">
+                <h6>{{textAnswer}}</h6>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="questionID == 13">
+        <img style="width: 93%; height: 100%" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+             src="./assets/images/13_0.jpg" alt="">
+      </ng-container>
+      <ng-container *ngIf="questionID == 14">
+        <div class="row">
+          <div class="column my-auto">
+            <div class="cont">
+              <img style="width: 80%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                   src="./assets/images/14_0.png" alt="">
+              <div class="middle1" (click)="answer(this.options[0]); clicked=true; textAnswer=this.options[0].text">
+                <div class="txt0">Item type: {{this.options[0].text}} File</div>
+                <div class="txt1">Dimensions: 742 x 619</div>
+                <div class="txt2">Size: 1,14 MB</div>
+              </div>
+            </div>
+          </div>
+          <div class="column my-auto">
+            <div class="cont">
+              <img style="width: 80%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                   src="./assets/images/14_0.png" alt="">
+              <div class="middle1" (click)="answer(this.options[1]); clicked=true; textAnswer=this.options[1].text">
+                <div class="txt0">Item type: {{this.options[1].text}} File</div>
+                <div class="txt1">Dimensions: 807 x 732</div>
+                <div class="txt2">Size: 845 KB</div>
+              </div>
+            </div>
+          </div>
+          <div class="column my-auto">
+            <div class="cont">
+              <img style="width: 80%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                   src="./assets/images/14_0.png" alt="">
+              <div class="middle1" (click)="answer(this.options[2]); clicked=true; textAnswer=this.options[2].text">
+                <div class="txt0">Item type: {{this.options[2].text}} File</div>
+                <div class="txt1">Dimensions: 483 x 575</div>
+                <div class="txt2">Size: 677 KB</div>
+              </div>
+            </div>
+          </div>
+          <div class="column my-auto">
+            <div class="cont">
+              <img style="width: 80%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                   src="./assets/images/14_0.png" alt="">
+              <div class="middle1" (click)="answer(this.options[3]); clicked=true; textAnswer=this.options[3].text">
+                <div class="txt0">Item type: {{this.options[3].text}} File</div>
+                <div class="txt1">Dimensions: 629 x 564</div>
+                <div class="txt2">Size: 1,83 MB</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-container *ngIf="questionAnswered">
+          <div class="answer mt-1 mb-2">
+            <ng-container *ngIf="correct">
+              <div class="card correct text-white text-center ">
+                <h6>{{textAnswer}}</h6>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="!correct">
+              <div class="card incorrect text-white text-center ">
+                <h6>{{textAnswer}}</h6>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="questionID == 15">
+        <img style="width: 97%; height: 100%" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+             src="./assets/images/15_1.png" alt="">
+      </ng-container>
+      <ng-container *ngIf="questionID == 16">
+        <div class="row">
+          <div class="column my-auto">
+            <div class="cont">
+              <img style="width: 80%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                   src="./assets/images/16_0.gif" alt="">
+              <div class="middle1" (click)="answer(this.options[0]); clicked=true; textAnswer='GIF'">
+                <div class="txt0">Item type: GIF File</div>
+                <div class="txt1">Dimensions: 742 x 619</div>
+                <div class="txt2">Size: 1,14 MB</div>
+              </div>
+            </div>
+          </div>
+          <div class="column my-auto">
+            <div class="cont">
+              <img style="width: 80%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                   src="./assets/images/16_1.png" alt="">
+              <div class="middle1" (click)="answer(this.options[0]); clicked=true; textAnswer=this.options[0].text">
+                <div class="txt0">Item type: {{this.options[0].text}} File</div>
+                <div class="txt1">Dimensions: 807 x 732</div>
+                <div class="txt2">Size: 845 KB</div>
+              </div>
+            </div>
+          </div>
+          <div class="column my-auto">
+            <div class="cont">
+              <img style="width: 80%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                   src="./assets/images/16_2.png" alt="">
+              <div class="middle1" (click)="answer(this.options[1]); clicked=true; textAnswer=this.options[1].text">
+                <div class="txt0">Item type: {{this.options[1].text}} File</div>
+                <div class="txt1">Dimensions: 483 x 575</div>
+                <div class="txt2">Size: 677 KB</div>
+              </div>
+            </div>
+          </div>
+          <div class="column my-auto">
+            <div class="cont">
+              <img style="width: 80%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                   src="./assets/images/16_3.gif" alt="">
+              <div class="middle1" (click)="answer(this.options[1]); clicked=true; textAnswer='GIF'">
+                <div class="txt0">Item type: GIF File</div>
+                <div class="txt1">Dimensions: 629 x 564</div>
+                <div class="txt2">Size: 1,83 MB</div>
+              </div>
+            </div>
+          </div>
+          <div class="column my-auto">
+            <div class="cont">
+              <img style="width: 80%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                   src="./assets/images/16_4.png" alt="">
+              <div class="middle1" (click)="answer(this.options[2]); clicked=true; textAnswer=this.options[2].text">
+                <div class="txt0">Item type: {{this.options[2].text}} File</div>
+                <div class="txt1">Dimensions: 912 x 863</div>
+                <div class="txt2">Size: 303 KB</div>
+              </div>
+            </div>
+          </div>
+          <div class="column my-auto">
+            <div class="cont">
+              <img style="width: 80%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                   src="./assets/images/16_5.png" alt="">
+              <div class="middle1" (click)="answer(this.options[3]); clicked=true; textAnswer=this.options[3].text">
+                <div class="txt0">Item type: {{this.options[3].text}} File</div>
+                <div class="txt1">Dimensions: 1029 x 954</div>
+                <div class="txt2">Size: 2,03 MB</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-container *ngIf="questionAnswered">
+          <div class="answer mt-1 mb-2">
+            <ng-container *ngIf="correct">
+              <div class="card correct text-white text-center ">
+                <h6>{{textAnswer}}</h6>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="!correct">
+              <div class="card incorrect text-white text-center ">
+                <h6>{{textAnswer}}</h6>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="questionID == 17">
+        <img style="width: 97%; height: 100%" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+             src="./assets/images/17_0.png" alt="">
+      </ng-container>
+      <ng-container *ngIf="questionID == 18">
+        <img style="width: 97%; height: 100%" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+             src="./assets/images/18_0.jpg" alt="">
+      </ng-container>
+      <ng-container *ngIf="questionID == 20">
+        <div class="row">
+          <div class="column my-auto">
+            <div class="cont">
+              <img style="width: 80%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                   src="./assets/images/20_1.png" alt="">
+              <div class="middle1" (click)="answer(this.options[0]); clicked=true; textAnswer=this.options[0].text">
+                <div class="txt0">Item type: {{this.options[0].text}} File</div>
+                <div class="txt1">Dimensions: 742 x 619</div>
+                <div class="txt2">Size: 1,14 MB</div>
+              </div>
+            </div>
+          </div>
+          <div class="column my-auto">
+            <div class="cont">
+              <img style="width: 80%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                   src="./assets/images/20_0.gif" alt="">
+              <div class="middle1" (click)="answer({'text': 'BMP', 'correct': true}); clicked=true; textAnswer='GIF'">
+                <div class="txt0">Item type: GIF File</div>
+                <div class="txt1">Dimensions: 807 x 732</div>
+                <div class="txt2">Size: 845 KB</div>
+              </div>
+            </div>
+          </div>
+          <div class="column my-auto">
+            <div class="cont">
+              <img style="width: 80%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                   src="./assets/images/20_2.png" alt="">
+              <div class="middle1" (click)="answer(this.options[1]); clicked=true; textAnswer=this.options[1].text">
+                <div class="txt0">Item type: {{this.options[1].text}} File</div>
+                <div class="txt1">Dimensions: 483 x 575</div>
+                <div class="txt2">Size: 677 KB</div>
+              </div>
+            </div>
+          </div>
+          <div class="column my-auto">
+            <div class="cont">
+              <img style="width: 80%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                   src="./assets/images/20_3.png" alt="">
+              <div class="middle1" (click)="answer(this.options[2]); clicked=true; textAnswer=this.options[2].text">
+                <div class="txt0">Item type: {{this.options[2].text}} File</div>
+                <div class="txt1">Dimensions: 629 x 564</div>
+                <div class="txt2">Size: 1,83 MB</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-container *ngIf="questionAnswered">
+          <div class="answer mt-1 mb-2">
+            <ng-container *ngIf="correct">
+              <div class="card correct text-white text-center ">
+                <h6>{{textAnswer}}</h6>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="!correct">
+              <div class="card incorrect text-white text-center ">
+                <h6>{{textAnswer}}</h6>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngIf="category == 'multiple-choice'">
+        <ng-container *ngIf="questionID != 12 && questionID != 14 && questionID != 16 && questionID != 20">
+          <div class="options">
+            <ol *ngFor="let option of options">
+              <li (click)="answer(option); clicked=true;">
+                <div appChangeBg [isCorrect]="option.correct" class="card">
+                  {{option.text}}
+                </div>
+              </li>
+
+            </ol>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="questionAnswered">
+          <div class="explanation mb-2">
+            <div class="card">
+              <h5>{{explanation}}</h5>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-lg" (click)="nextQuestion(); clicked=false;" [disabled]="waitNext">Next
+            Question
+          </button>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="category == 'fill-in'">
+        <ng-container *ngIf="!questionAnswered">
+          <div class="form-group">
+            <input [(ngModel)]="textAnswer" type="text" class="form-control mt-4 mb-2" id="inputAnswer"
+                   placeholder="Answer">
+          </div>
+          <button class="btn btn-primary mb-2" (click)="answer(textAnswer.toLowerCase()); clicked=true;"
+                  [disabled]="textAnswer === ''">Submit Answer
+          </button>
+        </ng-container>
+        <ng-container *ngIf="questionAnswered">
+          <div class="answer mt-1 mb-2">
+            <ng-container *ngIf="correct">
+              <div class="card correct text-white text-center ">
+                <h6>{{textAnswer}}</h6>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="!correct">
+              <div class="card incorrect text-white text-center ">
+                <h6>{{textAnswer}}</h6>
+              </div>
+            </ng-container>
+          </div>
+          <ng-container *ngIf="questionID != 5">
+            <div class="explanation mt-1 mb-2">
+              <div class="card">
+                <h5>{{explanation}}</h5>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="questionID == 5">
+            <div class="explanation mt-1 mb-2">
+              <div class="card">
+                <h5>{{explanation}}</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column my-auto">
+                <div class="cont">
+                  <img style="width: 100%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                       src="./assets/images/5_1.png" alt="">
+                </div>
+              </div>
+              <div class="column my-auto">
+                <div class="cont">
+                  <img style="width: 100%; height: auto" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+                       src="./assets/images/5_2.png" alt="">
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <button class="btn btn-primary btn-lg" (click)="nextQuestion(); clicked=false;" [disabled]="waitNext">Next
+            Question
+          </button>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="questionAnswered && links.length > 0">
+        <div class="explanation mt-4 mb-2">
+          <div class="card">
+            <h6>If you are interested, here is some more information around this topic:</h6>
+            <ng-container *ngIf="links.length > 0">
+              <a class="link" href={{links[0]}}>{{links[0]}}</a>
+            </ng-container>
+            <ng-container *ngIf="links.length > 1">
+              <a class="link" href={{links[1]}}>{{links[2]}}</a>
+            </ng-container>
+            <ng-container *ngIf="links.length > 2">
+              <a class="link" href={{links[1]}}>{{links[2]}}</a>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+
+    </ng-container>
+
+    <ng-container *ngIf="isQuizCompleted">
+      <div class="row d-flex justify-content-between"
+           style="display: flex; justify-content: center; align-items: center;">
+        <img *ngIf="points < 125" style="width: 40%; height: 40%" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+             src="./assets/images/badge_failure.png" alt="Fail">
+        <img *ngIf="points > 124 && points < 225" style="width: 40%; height: 40%"
+             class="img-fluid mt-3 mb-3 col-sm-12 mx-auto" src="./assets/images/badge_almost.png" alt="Almost">
+        <img *ngIf="points > 224" style="width: 40%; height: 40%" class="img-fluid mt-3 mb-3 col-sm-12 mx-auto"
+             src="./assets/images/badge_success.png" alt="">
+        <div class="result text-center col-md-6 col-sm-12">
+          <h3 *ngIf="points < 100">Keep on going!! <br>You will get it next time.<br>Below is your result:</h3>
+          <h3 *ngIf="points > 99 && points < 200">You got this!! <br>You are almost there.<br>Below is your result:</h3>
+          <h3 *ngIf="points > 199">Congratulations!! <br>You have passed the test. <br>Below is your result:</h3>
+          <p class="mt-4">Total Question Attempted : {{attemptAnswer}}/{{questionAmount}} </p>
+          <p>Total Correct Answered : {{correctAnswer}}/{{questionAmount}} </p>
+          <p>Total Wrong Answered : {{inCorrectAnswer}}/{{questionAmount}} </p>
+          <p>Your Score : {{points}} Points </p>
+          <button class="btn mt-3 mb-2 btn-primary btn-lg" routerLink="/question" (click)="ngOnInit()">Try again?</button><br>
+          <button class="btn mt-4 mb-2 btn-primary btn-lg" (click)="download()">Download Statistics</button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
